@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Community Church - Calendar Sync</title>
+    <style>
+        :root {
+            --primary-color: #060dcf;
+            --accent-color: #f0c621;
+            --background-color: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #0509a3;
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d9b01d;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .feature {
+            flex-basis: calc(33.333% - 2rem);
+            min-width: 250px;
+            background-color: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .feature {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Comunidad<span>CENFES</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#events">Eventos</a></li>
+                    <li><a href="#ministries">Ministerios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Permanece en sintonía con nuestra comunidad</h1>
+            <p class="description">
+                Integra sin esfuerzo los eventos y actividades de la Iglesia CENFES cartagena en tu calendario personal. Asegúrate de no perderte ninguna oportunidad para adorar, servir y crecer juntos en la fe.
+            </p>
+            <div class="buttons">
+                <a href="#" class="btn btn-primary">
+Sincroniza con Outlook</a>
+                <a href="#" class="btn btn-secondary">
+Sincroniza con Gmail</a>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <h3>Servicios Dominicales</h3>
+                    <p>Mantente al tanto de nuestros servicios de adoración semanales y celebraciones especiales.</p>
+                </div>
+                <div class="feature">
+                    <h3>Estudios Biblicos</h3>
+                    <p>No te pierdas ninguna sesión de estudio en grupo ni oportunidades de crecimiento espiritual.</p>
+                </div>
+                <div class="feature">
+                    <h3>Alcance Comunitario</h3>
+                    <p>Infórmate sobre nuestras misiones y eventos de servicio local.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
