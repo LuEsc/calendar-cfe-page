@@ -325,7 +325,7 @@
                 <h1>Bienvenido a nuestra comunidad de fe</h1>
                 <p>Únete a nosotros en adoración, compañerismo y servicio a nuestra comunidad. Mantente conectado con nuestra congregación sincronizando nuestros eventos con tu calendario personal.</p>
                 <a href="#" class="btn">Sincronizar con Outlook</a>
-                <a href="https://calendar.google.com/calendar/u/0/r?cid=a466ceb56d565043586843d5671324bfdcad93dcd005770aac64987fc932449d@group.calendar.google.com" class="btn btn-secondary">Sincronizar con Gmail</a>
+               <a href="#" onclick="syncWithGoogle()" class="btn btn-secondary">Sincronizar con Gmail</a>
             </div>
         </section>
         
@@ -440,6 +440,12 @@
     </main>
 
     <script>
+        function syncWithGoogle() {
+            const calendarID = "a466ceb56d565043586843d5671324bfdcad93dcd005770aac64987fc932449d@group.calendar.google.com";
+            const googleCalendarURL = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(calendarID)}`;
+            window.location.href = googleCalendarURL;
+        }
+
         // Mobile menu toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('active');
