@@ -3,105 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CENFES - Sincronizaccion</title>
+    <title>Cenfes - Bienvenido</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #060dcf;
             --accent-color: #f0c621;
             --background-color: #ffffff;
             --text-color: #333333;
+            --light-gray: #f8f8f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 20px;
         }
 
         header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
         }
 
         .logo span {
             color: var(--accent-color);
         }
 
-        nav ul {
-            list-style-type: none;
+        .nav-links {
             display: flex;
-            gap: 1.5rem;
+            list-style: none;
         }
 
-        nav ul li a {
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
         }
 
-        nav ul li a:hover {
-            color: var(--primary-color);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         main {
+            margin-top: 80px;
+        }
+
+        section {
+            padding: 6rem 0;
+            width: 100%;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center;
+            justify-content: center;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
         h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
             font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        p {
             margin-bottom: 1rem;
-            color: var(--primary-color);
         }
 
-        .description {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
-        .buttons {
+        .card {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .btn {
+            display: inline-block;
             padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 500;
+            background-color: var(--primary-color);
+            color: var(--background-color);
             text-decoration: none;
             border-radius: 50px;
             transition: all 0.3s ease;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-align: center;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-        }
-
-        .btn-primary:hover {
+        .btn:hover {
             background-color: #0509a3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(6, 13, 207, 0.3);
         }
 
         .btn-secondary {
@@ -111,87 +193,277 @@
 
         .btn-secondary:hover {
             background-color: #d9b01d;
+            box-shadow: 0 5px 15px rgba(240, 198, 33, 0.3);
         }
 
-        .features {
+        #hero {
+            background: linear-gradient(135deg, #060dcf 0%, #0c14e0 100%);
+            color: var(--background-color);
+            text-align: center;
+        }
+
+        #hero h1, #hero p {
+            color: var(--background-color);
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        #about {
+            background-color: var(--light-gray);
+        }
+
+        #services {
+            background-color: var(--background-color);
+        }
+
+        #ministries {
+            background: linear-gradient(135deg, #f0c621 0%, #ffd700 100%);
+        }
+
+        #ministries .card {
+            background-color: var(--background-color);
+        }
+
+        #contact {
+            background-color: var(--background-color);
+            text-align: center;
+        }
+
+        .contact-info {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .feature {
-            flex-basis: calc(33.333% - 2rem);
-            min-width: 250px;
-            background-color: #f8f8f8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .feature h3 {
+        .contact-item svg {
+            width: 24px;
+            height: 24px;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
         }
 
         @media (max-width: 768px) {
-            header {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                color: var(--primary-color);
+                cursor: pointer;
+            }
+
+            .nav-links.active {
+                display: flex;
                 flex-direction: column;
-                align-items: flex-start;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--background-color);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                padding: 1rem;
             }
 
-            nav ul {
-                margin-top: 1rem;
+            .nav-links.active li {
+                margin: 1rem 0;
             }
 
-            .buttons {
-                flex-direction: column;
+            h1 {
+                font-size: 2.5rem;
             }
 
-            .feature {
-                flex-basis: 100%;
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 4rem 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">Comunidad<span>CENFES</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#events">Eventos</a></li>
-                    <li><a href="#ministries">Ministerios</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <h1>Permanece en sintonía con nuestra comunidad</h1>
-            <p class="description">
-                Integra sin esfuerzo los eventos y actividades de la Iglesia CENFES cartagena en tu calendario personal. Asegúrate de no perderte ninguna oportunidad para adorar, servir y crecer juntos en la fe.
-            </p>
-            <div class="buttons">
-                <a href="#" class="btn btn-primary">
-Sincroniza con Outlook</a>
-                <a href="#" class="btn btn-secondary">
-Sincroniza con Gmail</a>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                Comunidad<span>Cenfes</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#about">Acerca de</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#ministries">Ministerios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>            
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Bienvenido a nuestra comunidad de fe</h1>
+                <p>Únete a nosotros en adoración, compañerismo y servicio a nuestra comunidad. Mantente conectado con nuestra congregación sincronizando nuestros eventos con tu calendario personal.</p>
+                <a href="#" class="btn">Sincronizar con Outlook</a>
+                <a href="https://calendar.google.com/calendar/u/0/r?cid=https://calendar.google.com/calendar/ical/dircom.cenfes%40gmail.com/public/basic.ics" class="btn btn-secondary">Sincronizar con Gmail</a>
             </div>
-            <div class="features">
-                <div class="feature">
-                    <h3>Servicios Dominicales</h3>
-                    <p>Mantente al tanto de nuestros servicios de adoración semanales y celebraciones especiales.</p>
-                </div>
-                <div class="feature">
-                    <h3>Estudios Biblicos</h3>
-                    <p>No te pierdas ninguna sesión de estudio en grupo ni oportunidades de crecimiento espiritual.</p>
-                </div>
-                <div class="feature">
-                    <h3>Alcance Comunitario</h3>
-                    <p>Infórmate sobre nuestras misiones y eventos de servicio local.</p>
+        </section>
+        
+
+        <section id="about">
+            <div class="container">
+                <h2>Acerca de Nosotros</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Nuestra Misión</h3>
+                        <p>Difundir el amor y la gracia de Dios en nuestra comunidad y más allá, fomentando un ambiente acogedor para que todos experimenten Su presencia.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Nuestra Visión</h3>
+                        <p>Ser un faro de esperanza, promoviendo una comunidad de fe, amor y servicio que transforma vidas e impacta generaciones.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Nuestros Valores</h3>
+                        <p>La fe, la compasión, la inclusividad y el servicio comunitario guían nuestras acciones mientras nos esforzamos por encarnar las enseñanzas de Cristo en nuestra vida diaria.</p>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </section>
+        
+
+        <section id="services">
+            <div class="container">
+                <h2>Crecimiento y Servicio</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Adoración Dominical</h3>
+                        <p>Te invitamos a celebrar la fe con nosotros cada domingo a las 9:00 AM, con música y mensajes biblicos.</p>
+                        <a href="#" class="btn">Más Información</a>
+                    </div>
+                    <div class="card">
+                        <h3>Grupos Celulares</h3>
+                        <p>Únete a nuestros grupos celulares para profundizar en las Escrituras, construir relaciones y crecer juntos en la fe.</p>
+                        <a href="#" class="btn">Únete</a>
+                    </div>
+                    <div class="card">
+                        <h3>Alcance Comunitario y Misiones</h3>
+                        <p>Participa en programas de ayuda local y viajes misioneros para servir a quienes lo necesitan y compartir el amor de Dios.</p>
+                        <a href="#" class="btn">Involúcrate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        <section id="ministries">
+            <div class="container">
+                <h2>Nuestros Ministerios</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Ministerio Juvenil</h3>
+                        <p>Empoderando a los jóvenes creyentes para crecer en fe y liderazgo, fomentando una sólida base espiritual para la próxima generación.</p>
+                        <a href="#" class="btn">Unirse</a>
+                    </div>
+                    <div class="card">
+                        <h3>Ministerio MIA</h3>
+                        <p>Hombres en Acción: Equipando y animando a los hombres a liderar con integridad, fe y servicio en sus familias y comunidades.</p>
+                        <a href="#" class="btn">Unirse</a>
+                    </div>
+                    <div class="card">
+                        <h3>Ministerio de Mujeres</h3>
+                        <p>Empoderando a las mujeres a través del compañerismo, estudio bíblico y servicio, nutriendo el crecimiento espiritual y amistades duraderas.</p>
+                        <a href="#" class="btn">Unirse</a>
+                    </div>
+                    <div class="card">
+                        <h3>Ministerio de Hombres</h3>
+                        <p>Construyendo hombres fuertes y piadosos a través del compañerismo, la responsabilidad y el servicio, fomentando el liderazgo espiritual en el hogar y la comunidad.</p>
+                        <a href="#" class="btn">Unirse</a>
+                    </div>
+                    <div class="card">
+                        <h3>Ministerio de Parejas</h3>
+                        <p>Fortaleciendo relaciones: un ministerio dedicado a apoyar y enriquecer la vida de las parejas a través de la adoración, el aprendizaje conjunto y el servicio a la comunidad.</p>
+                        <a href="#" class="btn">Unirse</a>
+                    </div>                    
+                </div>
+            </div>
+        </section>
+        
+        
+
+        <section id="contact">
+            <div class="container">
+                <h2>Contáctanos</h2>
+                <p>Nos encantaría saber de ti. Comunícate con nosotros para cualquier consulta o solicitud de oración.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>(123) 456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>dircom.cenfes@gmail.com</span>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="mailto:dircom.cenfes@gmail.com" class="btn">Envíanos un Correo</a>
+                    <a href="tel:+1234567890" class="btn btn-secondary">Llámanos</a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
